@@ -9,7 +9,7 @@ public class Main {
         String arg = args[0].toLowerCase();
         switch (arg) {
             case "console" -> MainConsole.main(args);
-            case "test" -> MainTest.main(args);
+            case "test" -> MainExamples.main(args);
             case "ui" -> MainUI.main(args);
             case "cli", "" -> MainCLI.main(args);
             default -> log.info("Invalid command");

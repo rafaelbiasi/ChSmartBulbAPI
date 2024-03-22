@@ -12,7 +12,7 @@ import br.com.rafaelbiasi.chsmartbulbled.util.StringUtil;
 
 import java.util.List;
 
-public class MainTest {
+public class MainExamples {
 
     public static void main3(String[] args) {
         BulbClient bulbClient = new BluetoothBulbClient();

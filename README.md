@@ -13,24 +13,12 @@ Bulbs bulbs = new Bulbs(bulbClient);
 List<BulbDevice> bulbDevices = bulbs.deviceList(); //Discovery devices
 BulbDevice right = bulbs.connectDevice(bulbDevices, "RightBulb"); //Select and connect single device
 
-right.
+right.color(Color.color().red()); //Set color red
+right.commit(); //Send command to bulb
 
-color(Color.color().
+right.customEffect(new RBGRotationEffect(),FixedDelay.ms(139f)); //Custom effect
 
-red()); //Set color red
-        right.
-
-commit(); //Send command to bulb
-
-right.
-
-customEffect(new RBGRotationEffect(),FixedDelay.
-
-ms(139f)); //Custom effect
-
-        right.
-
-startCustomEffect(); //Run effect
+right.startCustomEffect(); //Run effect
 ```
 
 Multipe Bulb:
@@ -44,30 +32,15 @@ BulbDeviceGroup selectBulbs = bulbs.connectDevices(bulbDevices, "RightBulb", "Le
 BulbDevice left = selectBulbs.getDevice("LeftBulb"); //Get specific device
 BulbDevice right = selectBulbs.getDevice("RightBulb"); //Get specific device
 
-right.
+right.color(Color.color().red()); //Set color red
+right.commit(); //Send command to bulb
 
-color(Color.color().
+left.customEffect(new RBGRotationEffect(),FixedDelay.ms(138.88888f)); //Custom effect
+right.customEffect(new RBGRotationEffect(),FixedDelay.ms(139f)); //Custom effect
 
-red()); //Set color red
-        right.
-
-commit(); //Send command to bulb
-
-left.
-
-customEffect(new RBGRotationEffect(),FixedDelay.
-
-ms(138.88888f)); //Custom effect
-        right.
-
-customEffect(new RBGRotationEffect(),FixedDelay.
-
-ms(139f)); //Custom effect
-
-        selectBulbs.
-
-startCustomEffect(); //Run effect in all devices
+selectBulbs.startCustomEffect(); //Run effect in all devices
 ```
+More examples in [MainExamples.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Frafaelbiasi%2Fchsmartbulbled%2FMainExamples.java)  
 
 ---
 
