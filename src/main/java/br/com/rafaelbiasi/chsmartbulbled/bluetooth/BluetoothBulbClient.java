@@ -2,7 +2,9 @@ package br.com.rafaelbiasi.chsmartbulbled.bluetooth;
 
 import br.com.rafaelbiasi.chsmartbulbled.bulb.BulbDevice;
 import br.com.rafaelbiasi.chsmartbulbled.command.BulbCommand;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.delay.FixedDelay;
 import br.com.rafaelbiasi.chsmartbulbled.util.StringUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.bluetooth.*;
 import javax.microedition.io.Connector;
@@ -12,7 +14,10 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlueCoveBluetoothClient implements BluetoothClient {
+@Slf4j
+public class BluetoothBulbClient implements BulbClient {
+
+    private static final FixedDelay DELAY = FixedDelay.minMs();
 
     @Override
     public List<BluetoothDevice> discoverDevices() {
@@ -25,7 +30,9 @@ public class BlueCoveBluetoothClient implements BluetoothClient {
                 public void deviceDiscovered(RemoteDevice btDevice, DeviceClass cod) {
                     try {
                         String name = btDevice.getFriendlyName(false);
-                        devices.add(new BluetoothDevice(name, btDevice.getBluetoothAddress()));
+                        String string = btDevice.getBluetoothAddress();
+                        log.info("Discovered device '{}' with name '{}'", string, name);
+                        devices.add(new BluetoothDevice(name, string));
                     } catch (Exception e) {
                         throw new RuntimeException("Error discover", e);
                     }
@@ -64,9 +71,9 @@ public class BlueCoveBluetoothClient implements BluetoothClient {
     @Override
     public StreamConnection connectSPP(BulbDevice device) {
         try {
-            String url = "btspp://" + device.getAddress() + ":2;authenticate=false;encrypt=false;master=false";
-            StreamConnection open = (StreamConnection) Connector.open(url);
-            return open;
+            String sppService = "2";
+            String url = "btspp://" + device.getAddress() + ":" + sppService + ";authenticate=false;encrypt=false;master=false";
+            return (StreamConnection) Connector.open(url);
         } catch (IOException e) {
             throw new RuntimeException("Error connect SPP: " + device.getDeviceName(), e);
         }
@@ -78,9 +85,13 @@ public class BlueCoveBluetoothClient implements BluetoothClient {
             if (bulbCommand == null) return;
             OutputStream outputStream = device.getOutputStream();
             byte[] commandBytes = bulbCommand.getCommandBytes();
-            System.out.println("device = '" + device.getDeviceName() + "', data = '" + bulbCommand + "', commandBytes = [" + StringUtil.bytesToHex(commandBytes) + "]");
+            log.debug("device = '{}', data = '{}', commandBytes = [{}]",
+                    device.getDeviceName(),
+                    bulbCommand,
+                    StringUtil.bytesToHex(commandBytes));
             outputStream.write(commandBytes);
             outputStream.flush();
+            DELAY.delay();
         } catch (Exception e) {
             throw new RuntimeException("Error send SPP command: " + device.getDeviceName(), e);
         }

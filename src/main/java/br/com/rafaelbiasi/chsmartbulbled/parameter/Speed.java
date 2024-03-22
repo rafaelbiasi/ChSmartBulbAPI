@@ -1,4 +1,4 @@
-package br.com.rafaelbiasi.chsmartbulbled.bulb;
+package br.com.rafaelbiasi.chsmartbulbled.parameter;
 
 public class Speed {
 }

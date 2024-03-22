@@ -1,10 +1,9 @@
-package br.com.rafaelbiasi.chsmartbulbled.bulb;
-
-import java.time.Duration;
+package br.com.rafaelbiasi.chsmartbulbled.parameter.delay;
 
 public class RandomRangeDelay implements Delay {
     private final float minMs;
     private final float maxMs;
+    private long startTime;
 
     public RandomRangeDelay(float minMs, float max) {
         this.minMs = minMs;
@@ -16,13 +15,20 @@ public class RandomRangeDelay implements Delay {
     }
 
     @Override
-    public void controlSpeed() {
-        try {
-            double ms = (Math.random() * maxMs) + minMs;
-            Thread.sleep(Duration.ofNanos(Math.round(ms * 1000000)));
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    public void prepareDelay() {
+        this.startTime = System.nanoTime();
+    }
+
+    @Override
+    public void waitDelay(long frame) {
+        long delay = calcDelay(frame);
+        while ((System.nanoTime() - startTime) < delay) {
         }
     }
 
+    @Override
+    public long calcDelay(long frame) {
+        double ms = (Math.random() * maxMs) + minMs;
+        return Math.round(ms * 1000000);
+    }
 }

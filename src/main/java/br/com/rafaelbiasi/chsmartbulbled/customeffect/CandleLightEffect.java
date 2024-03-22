@@ -1,4 +1,4 @@
-package br.com.rafaelbiasi.chsmartbulbled.effect;
+package br.com.rafaelbiasi.chsmartbulbled.customeffect;
 
 public class CandleLightEffect extends FlickeringEffect {
 

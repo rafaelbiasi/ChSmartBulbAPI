@@ -1,7 +1,7 @@
-package br.com.rafaelbiasi.chsmartbulbled.effect;
+package br.com.rafaelbiasi.chsmartbulbled.customeffect;
 
 import br.com.rafaelbiasi.chsmartbulbled.bulb.BulbDevice;
-import br.com.rafaelbiasi.chsmartbulbled.bulb.Color;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
 
 public class TVEffect extends FlickeringEffect {
 
@@ -19,13 +19,5 @@ public class TVEffect extends FlickeringEffect {
         super(BASE_HUE, HUE_VARIATION);
     }
 
-    @Override
-    public Color apply(BulbDevice bulbDevice, Integer frame) {
-        double flickerIntensity = (Math.random() * MAX_FLICKER_INTENSITY) + MIN_FLICKER_INTENSITY2;
-        double flickerHue = (Math.random() * MAX_FLICKER_HUE) - MIN_FLICKER_HUE;
-        double hue = (double) BASE_HUE + flickerHue + (Math.sin(frame / ((Math.random() * 10) + 15)) * (double) HUE_VARIATION);
-        float brightness = (float) (flickerIntensity * MAX_BRIGHTNESS + MIN_BRIGHTNESS);
-        return Color.color().hue((int) hue, brightness, SATURATION);
 
-    }
 }

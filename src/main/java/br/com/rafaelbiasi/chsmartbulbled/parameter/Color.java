@@ -1,4 +1,4 @@
-package br.com.rafaelbiasi.chsmartbulbled.bulb;
+package br.com.rafaelbiasi.chsmartbulbled.parameter;
 
 import br.com.rafaelbiasi.chsmartbulbled.util.FloatRangeValidation;
 import br.com.rafaelbiasi.chsmartbulbled.util.IntRangeValidation;
@@ -113,6 +113,34 @@ public class Color {
         return this;
     }
 
+    public Color cyan() {
+        this.green();
+        this.blue();
+        return this;
+    }
+
+    public Color magenta() {
+        this.red();
+        this.blue();
+        return this;
+    }
+
+    public Color yellow() {
+        this.red();
+        this.green();
+        return this;
+    }
+
+    public Color off(){
+        this.rgb(0,0,0,0);
+        return this;
+    }
+
+    public Color whiteRGB() {
+        this.rgb(255,255,255);
+        return this;
+    }
+
     public Color white(int intensity) {
         RGBW_VALIDATION.requireInRange(intensity);
         this.white = (byte) intensity;
@@ -121,6 +149,12 @@ public class Color {
 
     public Color white() {
         this.white(255);
+        return this;
+    }
+
+    public Color fullWhite() {
+        this.whiteRGB();
+        this.white();
         return this;
     }
 

@@ -1,11 +1,11 @@
 package br.com.rafaelbiasi.chsmartbulbled.command;
 
-import br.com.rafaelbiasi.chsmartbulbled.bulb.Color;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
 
-public class ChangeColorBulbCommand implements BulbCommand {
+public class ColorBulbCommand implements BulbCommand {
     private final Color color;
 
-    public ChangeColorBulbCommand(Color color) {
+    public ColorBulbCommand(Color color) {
         this.color = color;
     }
 
@@ -25,9 +25,14 @@ public class ChangeColorBulbCommand implements BulbCommand {
                 color.getRed(),
                 0x00,
                 0x50,
-                color.getWhiteBrightness(),
+                color.getWhite(),
                 0x00,
                 0x00
         };
+    }
+
+    @Override
+    public String toString() {
+        return color.toString();
     }
 }

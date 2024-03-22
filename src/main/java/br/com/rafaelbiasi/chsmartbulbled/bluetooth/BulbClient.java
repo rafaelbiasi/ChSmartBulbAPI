@@ -6,7 +6,7 @@ import br.com.rafaelbiasi.chsmartbulbled.command.BulbCommand;
 import javax.microedition.io.StreamConnection;
 import java.util.List;
 
-public interface BluetoothClient {
+public interface BulbClient {
 
     List<BluetoothDevice> discoverDevices();
 

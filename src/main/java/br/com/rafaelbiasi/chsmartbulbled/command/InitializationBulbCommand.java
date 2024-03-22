@@ -1,38 +1,25 @@
 package br.com.rafaelbiasi.chsmartbulbled.command;
 
-import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
+import br.com.rafaelbiasi.chsmartbulbled.util.StringUtil;
 
-public class ColorBulbCommand implements BulbCommand {
-    private final Color color;
-
-    public ColorBulbCommand(Color color) {
-        this.color = color;
-    }
+public class InitializationBulbCommand implements BulbCommand {
 
     @Override
     public byte[] getCommandBytes() {
         return new byte[]{
-                0x01,
-                (byte) 0xfe,
-                0x00,
-                0x00,
-                0x53,
-                (byte) 0x83,
-                0x10,
-                0x00,
-                color.getGreen(),
-                color.getBlue(),
-                color.getRed(),
-                0x00,
-                0x50,
-                color.getWhite(),
-                0x00,
-                0x00
+                0x30, //0
+                0x31, //1
+                0x32, //2
+                0x33, //3
+                0x34, //4
+                0x35, //5
+                0x36, //6
+                0x37  //7
         };
     }
 
     @Override
     public String toString() {
-        return color.toString();
+        return StringUtil.bytesToHex(getCommandBytes());
     }
 }

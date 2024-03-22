@@ -1,11 +1,11 @@
 package br.com.rafaelbiasi.chsmartbulbled.util;
 
-public class RangeValidation {
+public class IntRangeValidation {
 
     private final int min;
     private final int max;
 
-    public RangeValidation(int min, int max) {
+    public IntRangeValidation(int min, int max) {
         this.min = min;
         this.max = max;
     }

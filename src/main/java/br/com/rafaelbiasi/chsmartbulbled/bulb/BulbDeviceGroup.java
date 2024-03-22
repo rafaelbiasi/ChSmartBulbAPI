@@ -1,52 +1,81 @@
 package br.com.rafaelbiasi.chsmartbulbled.bulb;
 
 import br.com.rafaelbiasi.chsmartbulbled.command.BulbCommand;
-import br.com.rafaelbiasi.chsmartbulbled.command.ChangeColorBulbCommand;
+import br.com.rafaelbiasi.chsmartbulbled.command.ColorBulbCommand;
 import br.com.rafaelbiasi.chsmartbulbled.command.ModeBulbCommand;
 import br.com.rafaelbiasi.chsmartbulbled.command.SceneBulbCommand;
+import br.com.rafaelbiasi.chsmartbulbled.customeffect.CustomEffect;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.ModeEffect;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.SceneEffect;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.Speed;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.delay.Delay;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.delay.FixedDelay;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
-public class BulbGroupDevices implements Device {
+public class BulbDeviceGroup {
 
     private final List<BulbDevice> bulbDevices;
 
-    public BulbGroupDevices(List<BulbDevice> bulbDevices) {
+    public BulbDeviceGroup(List<BulbDevice> bulbDevices) {
         this.bulbDevices = bulbDevices;
     }
 
-    @Override
-    public BulbGroupDevices color(Color color) {
-        BulbCommand bulbCommand = new ChangeColorBulbCommand(color);
-        for (BulbDevice bulbDevice : bulbDevices) {
-            bulbDevice.setCommand(bulbCommand);
-        }
+    public BulbDeviceGroup color(Color color) {
+        BulbCommand bulbCommand = new ColorBulbCommand(color);
+        bulbDevices.forEach(bulbDevice -> bulbDevice.setCommand(bulbCommand));
         return this;
     }
 
-    @Override
-    public BulbGroupDevices scene(Scene scene) {
-        BulbCommand bulbCommand = new SceneBulbCommand(scene);
-        for (BulbDevice bulbDevice : bulbDevices) {
-            bulbDevice.setCommand(bulbCommand);
-        }
+    public BulbDeviceGroup customEffect(CustomEffect customEffect, Delay delay) {
+        bulbDevices.forEach(bulbDevice -> bulbDevice.customEffect(customEffect, delay));
         return this;
     }
 
-    @Override
-    public BulbGroupDevices mode(Mode mode, Speed speed) {
-        BulbCommand bulbCommand = new ModeBulbCommand(mode, speed);
-        for (BulbDevice bulbDevice : bulbDevices) {
-            bulbDevice.setCommand(bulbCommand);
-        }
+    public BulbDeviceGroup scene(SceneEffect sceneEffect) {
+        BulbCommand bulbCommand = new SceneBulbCommand(sceneEffect);
+        bulbDevices.forEach(bulbDevice -> bulbDevice.setCommand(bulbCommand));
         return this;
     }
 
-    @Override
-    public BulbGroupDevices commit() {
+    public BulbDeviceGroup mode(ModeEffect modeEffect, Speed speed) {
+        BulbCommand bulbCommand = new ModeBulbCommand(modeEffect, speed);
+        bulbDevices.forEach(bulbDevice -> bulbDevice.setCommand(bulbCommand));
+        return this;
+    }
+
+    public BulbDeviceGroup commit() {
         for (BulbDevice bulbDevice : bulbDevices) {
             bulbDevice.commit();
         }
         return this;
+    }
+
+    public BulbDeviceGroup startCustomEffect() {
+        bulbDevices.forEach(BulbDevice::startCustomEffect);
+        return this;
+    }
+
+    public BulbDeviceGroup connectSPP() {
+        bulbDevices.forEach(BulbDevice::connectSPP);
+        return this;
+    }
+
+    public BulbDeviceGroup disconnect() {
+        bulbDevices.forEach(BulbDevice::disconnect);
+        return this;
+    }
+
+    public BulbDevice getDevice(String bulbName) {
+        return bulbDevices.stream()
+                .filter(device -> device.getDeviceName().equalsIgnoreCase(bulbName))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Bulb " + bulbName + " not found"));
+    }
+
+    public void setCommand(BulbCommand bulbCommand) {
+        bulbDevices.forEach(bulbDevice -> bulbDevice.setCommand(bulbCommand));
     }
 }

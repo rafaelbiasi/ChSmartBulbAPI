@@ -1,7 +1,7 @@
-package br.com.rafaelbiasi.chsmartbulbled.effect;
+package br.com.rafaelbiasi.chsmartbulbled.customeffect;
 
 import br.com.rafaelbiasi.chsmartbulbled.bulb.BulbDevice;
-import br.com.rafaelbiasi.chsmartbulbled.bulb.Color;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
 
 public class RBGRotationEffect implements CustomEffect {
 
@@ -17,7 +17,7 @@ public class RBGRotationEffect implements CustomEffect {
     }
 
     @Override
-    public Color apply(BulbDevice bulbDevice, Integer frame) {
+    public Color apply(BulbDevice bulbDevice, Long frame) {
         return Color.color().hue(Math.floorMod(frame + angle + 1, 360), 1f, 1f);
     }
 }
