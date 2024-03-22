@@ -7,8 +7,8 @@
 
 Single Bulb:
 ```java
-BluetoothClient bluetoothClient = new BlueCoveBluetoothClient();
-Bulbs bulbs = new Bulbs(bluetoothClient);
+BulbClient bulbClient = new BlueCoveBluetoothClient();
+Bulbs bulbs = new Bulbs(bulbClient);
 List<BulbDevice> bulbDevices = bulbs.deviceList(); //Discovery devices
 BulbDevice right = bulbs.connectDevice(bulbDevices, "RightBulb"); //Select and connect single device
 
@@ -22,8 +22,8 @@ right.startCustomEffect(); //Run effect
 
 Multipe Bulb:
 ```java
-BluetoothClient bluetoothClient = new BlueCoveBluetoothClient();
-Bulbs bulbs = new Bulbs(bluetoothClient);
+BulbClient bulbClient = new BlueCoveBluetoothClient();
+Bulbs bulbs = new Bulbs(bulbClient);
 List<BulbDevice> bulbDevices = bulbs.deviceList(); //Discovery devices
 BulbDeviceGroup selectBulbs = bulbs.connectDevices(bulbDevices, "RightBulb", "LeftBulb"); //Select and connect group of devices
 
