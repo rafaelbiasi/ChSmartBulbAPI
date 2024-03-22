@@ -10,7 +10,6 @@ import br.com.rafaelbiasi.chsmartbulbled.parameter.ModeEffect;
 import br.com.rafaelbiasi.chsmartbulbled.parameter.SceneEffect;
 import br.com.rafaelbiasi.chsmartbulbled.parameter.Speed;
 import br.com.rafaelbiasi.chsmartbulbled.parameter.delay.Delay;
-import br.com.rafaelbiasi.chsmartbulbled.parameter.delay.FixedDelay;
 
 import java.util.List;
 import java.util.NoSuchElementException;

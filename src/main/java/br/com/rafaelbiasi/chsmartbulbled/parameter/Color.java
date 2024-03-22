@@ -131,13 +131,13 @@ public class Color {
         return this;
     }
 
-    public Color off(){
-        this.rgb(0,0,0,0);
+    public Color off() {
+        this.rgb(0, 0, 0, 0);
         return this;
     }
 
     public Color whiteRGB() {
-        this.rgb(255,255,255);
+        this.rgb(255, 255, 255);
         return this;
     }
 

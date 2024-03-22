@@ -1,7 +1,7 @@
 package br.com.rafaelbiasi.chsmartbulbled.bulb;
 
-import br.com.rafaelbiasi.chsmartbulbled.bluetooth.BulbClient;
 import br.com.rafaelbiasi.chsmartbulbled.bluetooth.BluetoothDevice;
+import br.com.rafaelbiasi.chsmartbulbled.bluetooth.BulbClient;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,6 @@ public class Bulbs {
 
     public List<BulbDevice> deviceList() {
         List<BluetoothDevice> bluetoothDevices = bluetoothClient.discoverDevices();
-
         return bluetoothDevices.stream()
                 .map(bd -> new BulbDevice(bluetoothClient, bd.name(), bd.address()))
                 .collect(Collectors.toList());

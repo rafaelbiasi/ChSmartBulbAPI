@@ -1,8 +1,5 @@
 package br.com.rafaelbiasi.chsmartbulbled.customeffect;
 
-import br.com.rafaelbiasi.chsmartbulbled.bulb.BulbDevice;
-import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
-
 public class TVEffect extends FlickeringEffect {
 
     public static final double MIN_BRIGHTNESS = 0.1;
