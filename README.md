@@ -51,7 +51,7 @@ selectBulbs.startCustomEffect(); //Run effect in all devices
 
 #### Start/initialization:
 
-**Data**: 3031323334353637 (1234567)
+**Data**: 3031323334353637 (01234567)
 
 [InitializationBulbCommand.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Frafaelbiasi%2Fchsmartbulbled%2Fcommand%2FInitializationBulbCommand.java)
 
