@@ -8,6 +8,7 @@ import br.com.rafaelbiasi.chsmartbulbled.parameter.ModeEffect;
 import br.com.rafaelbiasi.chsmartbulbled.parameter.SceneEffect;
 import br.com.rafaelbiasi.chsmartbulbled.parameter.Speed;
 import br.com.rafaelbiasi.chsmartbulbled.parameter.delay.Delay;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.delay.FixedDelay;
 
 import javax.microedition.io.StreamConnection;
 import java.io.IOException;
@@ -92,6 +93,7 @@ public class BulbDevice {
                 outputStream = connection.openOutputStream();
                 inputStream = connection.openInputStream();
                 initializeBulb();
+                FixedDelay.ms(1000).delay();
             }
         } catch (IOException e) {
             throw new RuntimeException("Error connect SPP: " + this.getDeviceName(), e);
