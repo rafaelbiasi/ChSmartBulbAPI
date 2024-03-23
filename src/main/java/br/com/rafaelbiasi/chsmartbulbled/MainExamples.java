@@ -14,7 +14,11 @@ import java.util.List;
 
 public class MainExamples {
 
-    public static void main3(String[] args) {
+    public static void main(String[] args) {
+        main5(args);
+    }
+
+    public static void main1(String[] args) {
         BulbClient bulbClient = new BluetoothBulbClient();
         Bulbs bulbs = new Bulbs(bulbClient);
         List<BulbDevice> bulbDevices = bulbs.deviceList(); // Discovery devices
@@ -42,7 +46,8 @@ public class MainExamples {
         left.startCustomEffect(); //Run effect
     }
 
-    public static void main(String[] args) {
+
+    public static void main3(String[] args) {
         BulbClient bluetoothClient = new BluetoothBulbClient();
         Bulbs bulbs = new Bulbs(bluetoothClient);
         List<BulbDevice> bulbDevices = bulbs.deviceList(); // Discovery devices
@@ -50,9 +55,6 @@ public class MainExamples {
 
         BulbDevice left = selectBulbs.getDevice("Left"); //Get specific device
         BulbDevice right = selectBulbs.getDevice("Right"); //Get specific device
-
-        right.color(Color.color().red()); //Set color red
-        right.commit(); // Send command to bulb
 
         left.customEffect(new RBGRotationEffect(), FixedDelay.ms(138.88888f)); //Custom effect
         right.customEffect(new RBGRotationEffect(), FixedDelay.ms(139f)); //Custom effect
@@ -74,14 +76,15 @@ public class MainExamples {
         BulbClient bluetoothClient = new BluetoothBulbClient();
         Bulbs bulbs = new Bulbs(bluetoothClient);
         List<BulbDevice> bulbDevices = bulbs.deviceList(); // Discovery devices
-        BulbDeviceGroup selectBulbs = bulbs.connectDevices(bulbDevices, "Left", "Right"); //Select and connect group of devices
+        BulbDeviceGroup selectBulbs = bulbs.connectDevices(bulbDevices, "F44EFD6CDC90", "F44EFDE5BE27"); //Select and connect group of devices
 
-        BulbDevice left = selectBulbs.getDevice("Left"); //Get specific device
-        BulbDevice right = selectBulbs.getDevice("Right"); //Get specific device
+        BulbDevice left = selectBulbs.getDevice("F44EFD6CDC90"); //Get specific device
+        BulbDevice right = selectBulbs.getDevice("F44EFDE5BE27"); //Get specific device
 
-        left.rename("Left");
-        right.rename("Right");
+        left.rename("34Left");
+//        right.rename("Right");
 
         selectBulbs.commit();
+        selectBulbs.disconnect();
     }
 }
