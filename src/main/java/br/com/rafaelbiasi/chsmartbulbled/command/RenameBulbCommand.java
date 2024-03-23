@@ -1,10 +1,12 @@
 package br.com.rafaelbiasi.chsmartbulbled.command;
 
+import br.com.rafaelbiasi.chsmartbulbled.util.StringUtil;
+
 import java.nio.ByteBuffer;
 
 public class RenameBulbCommand implements BulbCommand {
     public static final byte COMMAND_SIZE = 76;
-    public static final int PREFIX_SIZE = 17;
+    public static final int PREFIX_SIZE = 16;
     private final String newName;
 
     public RenameBulbCommand(String newName) {
@@ -37,5 +39,10 @@ public class RenameBulbCommand implements BulbCommand {
                 .put(prefixName)
                 .put(nameBytes)
                 .array();
+    }
+
+    @Override
+    public String toString() {
+        return StringUtil.bytesToHex(newName.getBytes());
     }
 }
