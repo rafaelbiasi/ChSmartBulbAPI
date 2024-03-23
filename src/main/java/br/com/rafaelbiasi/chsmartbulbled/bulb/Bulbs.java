@@ -23,18 +23,20 @@ public class Bulbs {
                 .collect(Collectors.toList());
     }
 
-    public BulbDevice connectDevice(List<BulbDevice> bulbDevices, String bulbName) {
+    public BulbDevice connectDevice(List<BulbDevice> bulbDevices, String bulbNameAddress) {
         BulbDevice dev = bulbDevices.stream()
-                .filter(device -> device.getDeviceName().equalsIgnoreCase(bulbName))
+                .filter(device -> bulbNameAddress.equalsIgnoreCase(device.getDeviceName())
+                        || bulbNameAddress.equalsIgnoreCase(device.getAddress()))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Bulb " + bulbName + " not found"));
+                .orElseThrow(() -> new NoSuchElementException("Bulb " + bulbNameAddress + " not found"));
         dev.connectSPP();
         return dev;
     }
 
-    public BulbDeviceGroup connectDevices(List<BulbDevice> bulbDevices, String... bulbNames) {
+    public BulbDeviceGroup connectDevices(List<BulbDevice> bulbDevices, String... bulbNamesAddresses) {
         List<BulbDevice> devices = bulbDevices.stream()
-                .filter(device -> Arrays.stream(bulbNames).anyMatch(s -> s.equalsIgnoreCase(device.getDeviceName())))
+                .filter(device -> Arrays.stream(bulbNamesAddresses).anyMatch(name -> name.equalsIgnoreCase(device.getDeviceName())
+                        || name.equalsIgnoreCase(device.getAddress())))
                 .collect(Collectors.toList());
         devices.forEach(BulbDevice::connectSPP);
         return new BulbDeviceGroup(devices);

@@ -67,11 +67,12 @@ public class BulbDeviceGroup {
         return this;
     }
 
-    public BulbDevice getDevice(String bulbName) {
+    public BulbDevice getDevice(String bulbNameAddress) {
         return bulbDevices.stream()
-                .filter(device -> device.getDeviceName().equalsIgnoreCase(bulbName))
+                .filter(device -> bulbNameAddress.equalsIgnoreCase(device.getDeviceName())
+                        || bulbNameAddress.equalsIgnoreCase(device.getAddress()))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Bulb " + bulbName + " not found"));
+                .orElseThrow(() -> new NoSuchElementException("Bulb " + bulbNameAddress + " not found"));
     }
 
     public void setCommand(BulbCommand bulbCommand) {
