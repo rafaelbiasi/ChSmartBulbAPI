@@ -111,10 +111,11 @@ More examples in [MainExamples.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Frafaelbiasi%
 
 _**Anyone interested in contributing to the project is welcome to do so.**_
 
-I would like to extend my sincerest gratitude to [**_pfalcon_**](https://github.com/pfalcon) for the project [*
-*_Chsmartbulb-led-bulb-speaker_**](https://github.com/pfalcon/Chsmartbulb-led-bulb-speaker) and [**_samsam2310_
-**](https://github.com/samsam2310) for the [**_Bluetooth-Chsmartbulb-Python-API_
-**](https://github.com/samsam2310/Bluetooth-Chsmartbulb-Python-API). Both projects have been a tremendous source of
+I would like to extend my sincerest gratitude to 
+[**_pfalcon_**](https://github.com/pfalcon) for the project 
+[**_Chsmartbulb-led-bulb-speaker_**](https://github.com/pfalcon/Chsmartbulb-led-bulb-speaker) and 
+[**_samsam2310_**](https://github.com/samsam2310) for the 
+[**_Bluetooth-Chsmartbulb-Python-API_**](https://github.com/samsam2310/Bluetooth-Chsmartbulb-Python-API). Both projects have been a tremendous source of
 inspiration for my own work, providing valuable insights and direction. Thank you for your contributions to the
 community and for inspiring fellow developers like myself.
 
