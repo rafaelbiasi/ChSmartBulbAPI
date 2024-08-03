@@ -70,7 +70,7 @@ More examples in [MainExamples.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Frafaelbiasi%
 **Prefix op**: `53`  
 **Color op**: `83`  
 **Data size**: `10` (16)  
-**Unknow**: `00` (Data size? Never used?)  
+**Unknow**: `00` (Data size? Not used?)  
 **Color**: `aabbcc` (aa = Green, bb = Blue, cc = Red)  
 **Unknow**: `00`  
 **Effect op**: `50` (50 = fixed color, others = WIP)  
@@ -90,7 +90,7 @@ More examples in [MainExamples.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Frafaelbiasi%
 **Prefix op**: `53`  
 **Rename op**: `80`  
 **Data size**: `4c` (76)  
-**Unknow**: `00` (Data size? Never used?)  
+**Unknow**: `00` (Data size? Not used?)  
 **Unknow**: `0000000000000000`  
 **Prefix name BT**: `03`  
 **Name**: `4465766963654254` (DeviceBT)  
