@@ -1,39 +1,69 @@
 package br.com.rafaelbiasi.chsmartbulbled.command;
 
 import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
+import br.com.rafaelbiasi.chsmartbulbled.parameter.SceneEffect;
 
-public class ColorBulbCommand implements BulbCommand {
-    public static final byte COMMAND_SIZE = 16;
-    private final Color color;
+public class ColorBulbCommand extends LightBulbCommand {
 
-    public ColorBulbCommand(Color color) {
-        this.color = color;
-    }
+	private final Color color;
+	private final SceneEffect sceneEffect = SceneEffect.FIXED;
 
-    @Override
-    public byte[] getCommandBytes() {
-        byte[] command = new byte[COMMAND_SIZE];
-        command[0x0] = 0x01;
-        command[0x1] = (byte) 0xfe;
-        command[0x2] = 0x00;
-        command[0x3] = 0x00;
-        command[0x4] = 0x53;
-        command[0x5] = (byte) 0x83;
-        command[0x6] = COMMAND_SIZE; //Byte array size (16)
-        command[0x7] = 0x00; //Byte array size? Never used?
-        command[0x8] = color.getGreen();
-        command[0x9] = color.getBlue();
-        command[0xA] = color.getRed();
-        command[0xB] = 0x00;
-        command[0xC] = 0x50;
-        command[0xD] = color.getWhite();
-        command[0xE] = 0x00;
-        command[0xF] = 0x00;
-        return command;
-    }
+	public ColorBulbCommand(Color color) {
+		this.color = sceneEffect.color(color);
+	}
 
-    @Override
-    public String toString() {
-        return color.toString();
-    }
+	@Override
+	protected byte getSegmentType() {
+		return 0x00;
+	}
+
+	@Override
+	protected byte getSegmentIndex() {
+		return 0x00;
+	}
+
+	@Override
+	protected byte getRed() {
+		return color.getRedIntensity();
+	}
+
+	@Override
+	protected byte getBlue() {
+		return color.getBlueIntensity();
+	}
+
+	@Override
+	protected byte getGreen() {
+		return color.getGreenIntensity();
+	}
+
+	@Override
+	protected byte getSpeed() {
+		return sceneEffect.calculateSpeed((byte) 255);
+	}
+
+	@Override
+	protected byte getEffect() {
+		return sceneEffect.getEffect();
+	}
+
+	@Override
+	protected byte getWhiteIntensity() {
+		return color.getWhiteIntensity();
+	}
+
+	@Override
+	protected byte getYellowIntensity() {
+		return color.getYellowIntensity();
+	}
+
+	@Override
+	protected byte getAutoClose() {
+		return 0x00;
+	}
+
+	@Override
+	public String toString() {
+		return color.toString();
+	}
 }

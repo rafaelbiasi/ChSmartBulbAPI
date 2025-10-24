@@ -16,9 +16,9 @@ public class BulbManager {
 
     public void setColor(CommandOptions options) {
         Color color = Color.color();
-        options.getRed().ifPresent(color::red);
-        options.getGreen().ifPresent(color::green);
-        options.getBlue().ifPresent(color::blue);
+        options.getRed().ifPresent(color::redIntensity);
+        options.getGreen().ifPresent(color::greenIntensity);
+        options.getBlue().ifPresent(color::blueIntensity);
         options.getWhite().ifPresent(color::white);
         options.getRGBW().ifPresent(color::rgb);
         if (options.hasFullWhite()) color.fullWhite();

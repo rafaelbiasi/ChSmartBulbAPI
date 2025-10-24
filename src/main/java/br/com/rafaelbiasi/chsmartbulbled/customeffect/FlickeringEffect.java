@@ -3,6 +3,8 @@ package br.com.rafaelbiasi.chsmartbulbled.customeffect;
 import br.com.rafaelbiasi.chsmartbulbled.bulb.BulbDevice;
 import br.com.rafaelbiasi.chsmartbulbled.parameter.Color;
 
+import java.time.LocalDateTime;
+
 public class FlickeringEffect implements CustomEffect {
 
     public static final double MIN_BRIGHTNESS = 0.1;
@@ -21,7 +23,7 @@ public class FlickeringEffect implements CustomEffect {
     }
 
     @Override
-    public Color apply(BulbDevice bulbDevice, Long frame) {
+    public Color apply(BulbDevice bulbDevice, Long frame, LocalDateTime localDateTime) {
         double flickerIntensity = (Math.random() * MAX_FLICKER_INTENSITY) + MIN_FLICKER_INTENSITY2;
         double flickerHue = (Math.random() * MAX_FLICKER_HUE) - MIN_FLICKER_HUE;
         double hue = (double) baseHue + flickerHue + (Math.sin(frame / ((Math.random() * 10) + 55)) * (double) hueVariation);

@@ -14,9 +14,9 @@ public class IntRangeValidation {
         return num >= min && num <= max;
     }
 
-    public void requireInRange(int num) {
+    public void requireInRange(int num, String field) {
         if (!isInRange(num)) {
-            throw new IllegalArgumentException("Number " + num + " is not in range " + min + " to " + max);
+            throw new IllegalArgumentException(field + " number " + num + " is not in range " + min + " to " + max);
         }
     }
 }
