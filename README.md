@@ -72,8 +72,8 @@ More examples in [MainExamples.java](src%2Fmain%2Fjava%2Fbr%2Fcom%2Frafaelbiasi%
 **Color op**:           `83`  
 **Data size**:          `10` (16 bytes little-endian)  
 **Data size**:          `00` (16 bytes little-endian)  
-**GREEN**:              `A1`
-**BLUE**:               `A2`
+**GREEN**:              `A1`  
+**BLUE**:               `A2`  
 **RED**:                `A3`  
 **Speed**:              `BB`  
 **Effect op**:          `CC`  
